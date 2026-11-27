@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f5ef">
+<meta name="description" content="金序，水贝贵金属行情。用清晰的报价与真实记录的走势，观察黄金、白银与铂金市场。">
+<title>金序 JINXU — 金有其价，心中有数</title>
+<link rel="stylesheet" href="./style.css?v=2"><script src="./app.js?v=pages1" defer></script>
+</head>
+<body>
+<header class="masthead wrap">
+  <a href="./" class="wordmark" aria-label="金序首页"><span class="seal">金</span>金序<span class="wordmark-en">JINXU</span></a>
+  <nav aria-label="主导航"><a href="#market" class="nav-active">行情与走势</a><a href="#all-quotes">全部品种</a><a href="#about">关于数据 <span>↗</span></a></nav>
+  <span class="edition">深圳 · 水贝 <span id="edition-date">市场观察</span></span>
+</header>
+<main class="wrap">
+  <section class="intro"><div><p class="eyebrow"><span class="dot"></span> THE PRECIOUS METALS JOURNAL</p><h1>金有其价，<em>心中有数。</em></h1><p class="intro-copy">每一克的变化，都值得被看见。<br class="mobile-break">在纷繁的市场里，留一份清晰。</p></div><div class="intro-aside"><span class="orbit" aria-hidden="true"><i></i><b>Au</b><small>79</small></span><span class="issue-number">01 / MARKET OBSERVATORY</span></div></section>
+  <section id="market" class="market-section" aria-label="贵金属行情及走势图">
+    <div class="section-kicker"><span>01 — 价格观察</span><span class="sync"><span class="dot" id="sync-dot"></span><span id="sync-status">连接行情中</span><button id="refresh" aria-label="立即刷新行情" title="立即刷新行情">↻</button></span></div>
+    <div class="instrument-tabs" role="group" aria-label="图表交易品种"><button data-code="XDL_Au" class="active" aria-pressed="true">黄金 <span>GOLD</span></button><button data-code="XDL_Ag" aria-pressed="false">白银 <span>SILVER</span></button><button data-code="XDL_Pt" aria-pressed="false">铂金 <span>PLATINUM</span></button><button data-code="XDL_Pd" aria-pressed="false">钯金 <span>PALLADIUM</span></button></div>
+    <div id="notice" class="notice" role="status" hidden></div>
+    <div class="market-layout">
+      <div class="price-story"><p class="eyebrow" id="instrument-subtitle">SHUIBEI / GOLD</p><h2 id="instrument-name">水贝黄金</h2><div class="hero-price" id="hero-price">—<small>卖出报价</small></div><div id="sample-change" class="sample-change">等待首份行情</div><dl class="quote-details"><div><dt>买入 <span>BID</span></dt><dd id="bid-price">—</dd></div><div><dt>卖出 <span>ASK</span></dt><dd id="ask-price">—</dd></div><div><dt>日内最高</dt><dd id="high-price">—</dd></div><div><dt>日内最低</dt><dd id="low-price">—</dd></div></dl><div class="price-caption"><span>源报价时间</span><time id="source-time">—</time><p>价格沿用来源数值，币种及单位以来源说明为准。</p></div></div>
+      <div class="chart-story"><div class="chart-toolbar"><div class="series-control" role="group" aria-label="价格方向"><button data-side="ask" class="active" aria-pressed="true"><i></i>卖出走势</button><button data-side="bid" aria-pressed="false"><i></i>买入走势</button></div><div class="range-control" role="group" aria-label="图表时间范围"><button data-range="1h" aria-pressed="false">1小时</button><button data-range="1d" class="active" aria-pressed="true">24小时</button><button data-range="7d" aria-pressed="false">7天</button></div></div><div class="chart-container" id="chart-container"><svg id="chart" role="img" aria-label="正在载入实际采集的价格走势"></svg><div class="chart-tooltip" id="chart-tooltip" hidden></div><div class="chart-message" id="chart-message">正在读取真实行情记录…</div></div><div class="chart-footnote"><span id="history-summary">实采记录 · 定时实采</span><span id="history-date">北京时间 UTC+8</span></div><div class="chart-insight"><span class="insight-mark">↗</span><p id="chart-insight">从此刻开始，记录每一次价格变化。</p><span class="live-label">OBSERVED, NOT SIMULATED</span></div></div>
+    </div>
+  </section>
+  <section class="market-strip" id="market-strip" aria-label="重点品种报价"></section>
+  <section id="all-quotes" class="all-quotes"><div class="section-kicker"><span>02 — 市场全景</span><span class="muted">一览国内与国际市场</span></div><div class="quotes-heading"><h2>看全局，<em>再作判断。</em></h2><label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="搜索名称或代码" aria-label="搜索品种"><kbd>/</kbd></label></div><div class="table-controls"><div class="category-tabs" role="group" aria-label="行情分类"><button data-category="all" class="active" aria-pressed="true">全部 <span id="total-count">0</span></button><button data-category="domestic" aria-pressed="false">国内市场</button><button data-category="global" aria-pressed="false">国际市场</button><button data-category="forex" aria-pressed="false">汇率</button><button data-category="favorites" aria-pressed="false">我的自选 <span id="favorite-count">0</span></button></div><span class="table-hint">点选品种，查看走势 ↗</span></div><div class="table-scroll"><table><thead><tr><th class="star-col"><span class="sr-only">自选</span></th><th>品种 / INSTRUMENT</th><th>买入价 <span>BID</span></th><th>卖出价 <span>ASK</span></th><th>日内最高</th><th>日内最低</th><th>报价时间</th></tr></thead><tbody id="quotes-body"><tr><td colspan="7" class="empty">正在连接市场…</td></tr></tbody></table></div><div class="table-bottom"><span id="result-count">等待数据</span><button id="auto-refresh" aria-pressed="true"><span class="dot"></span>自动同步 <span id="countdown">60s</span></button></div></section>
+  <section id="about" class="about"><div class="about-title"><p class="eyebrow">A LITTLE PERSPECTIVE</p><h2>价格有起伏，<br><em>记录有分寸。</em></h2></div><div class="about-item"><span>01</span><h3>真实价格，真实轨迹</h3><p>走势来自本站上线后持续采集的报价记录。时间范围内有多少记录，就展示多少；尚未采集的过去，留白。</p></div><div class="about-item"><span>02</span><h3>保持更新，也保持清醒</h3><p>本站约每5分钟尝试采集报价，发布可能延迟；页面每60秒检查更新。同步时间与源报价时间可能不同，请留意源报价时间，报价仅供参考。</p></div></section>
+</main>
+<footer class="wrap footer"><a href="./" class="wordmark">金序<span class="wordmark-en">JINXU</span></a><p>记录市场的刻度。<span>深圳 · 水贝</span></p><span>行情参考，不构成投资建议。<br>© <span id="year">2026</span> JINXU MARKET JOURNAL</span></footer>
+</body></html>

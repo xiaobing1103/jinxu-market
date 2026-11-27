@@ -1,0 +1,64 @@
+name: Collect market data and deploy Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+  schedule:
+    - cron: '2-59/5 * * * *'
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: market-pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Collect current prices
+        id: collect
+        continue-on-error: true
+        env:
+          SOURCE_URL: ${{ secrets.SOURCE_URL }}
+        run: python scripts/collect.py
+      - name: Preserve snapshots in repository
+        if: steps.collect.outcome == 'success'
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: update market snapshot'
+            git push origin HEAD:main
+          fi
+      - name: Build static website
+        run: python scripts/build.py
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+      - name: Report source failure
+        if: steps.collect.outcome != 'success'
+        run: echo '::warning::Source collection failed. Publishing last successful snapshot; timestamps remain unchanged.'
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publish Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

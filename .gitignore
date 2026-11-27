@@ -1,0 +1,8 @@
+_site/
+__pycache__/
+*.pyc
+*.tmp
+node_modules/
+qa-*.png
+.env
+password.txt
